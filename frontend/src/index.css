@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    font-family: "Inter", sans-serif;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .bg-custom-color {
+    background-color: #3490dc;
+  }
+  .text-custom-color {
+    color: white;
+  }
+  .bg-primary {
+    background-color: #212529;
+  }
+  .text-primary {
+    color: #99a1af;
+  }
+  .border-primary {
+    border-color: #99a1af;
+  }
+  .font-f {
+    font-family: "Inter", sans-serif;
+  }
+  .bg-cream {
+    background-color: #f9fafb;
+  }
+  .bg-bag {
+    background-color: #1e1e1e;
+  }
+  .bg-theme {
+    background: #ff725e;
+  }
+  .bg-theme-text {
+   color: #ff725e;
+  }
+  .bg-sidebar{
+    background-color: #161A2D;
+  }
+}

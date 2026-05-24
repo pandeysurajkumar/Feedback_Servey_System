@@ -10,6 +10,7 @@ import {
   userdetails,
   checkConnection,
   changePassword,
+  forgotPassword,
 } from "../controllers/Auth.controller.js";
 import { verifyJwt } from "../middleware/Protected.middleware.js";
 
@@ -24,5 +25,6 @@ router.route("/auth-check").get(verifyJwt, (req, res) => {
   res.status(200).json({ message: "You are logged in", loggedin: "true" });
 });
 router.route("/change-password").post(verifyJwt, changePassword);
+router.route("/forgot-password").post(forgotPassword);
 
 export { router as Auth_routes };

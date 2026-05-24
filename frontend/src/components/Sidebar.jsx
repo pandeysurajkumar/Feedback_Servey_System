@@ -3,6 +3,7 @@ import { MdLogout, MdDashboard, MdHome, MdCreate, MdQuestionAnswer, MdAnalytics 
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { VITE_API_URL } from "../config";
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function Sidebar() {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/v1/auth/logout", {
+      const response = await fetch(`${VITE_API_URL}/auth/logout`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -45,7 +46,7 @@ function Sidebar() {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch("http://localhost:8080/api/v1/profile/dashboard", {
+        const response = await fetch(`${VITE_API_URL}/profile/dashboard`, {
           method: "GET",
           credentials: "include",
           headers: {

@@ -16,6 +16,7 @@ import {
 import { MdBarChart, MdPieChart, MdShowChart, MdDownload } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import { saveAs } from 'file-saver';
+import { VITE_API_URL } from '../config';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -68,7 +69,7 @@ function Responses() {
   const fetchSurveys = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:8080/api/v1/serveys/:serveyId", {
+      const response = await fetch(`${VITE_API_URL}/Serveys/my-surveys`, {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -87,7 +88,7 @@ function Responses() {
     if (surveyId) {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:8080/api/v1/response/serveyId/${surveyId}`, {
+        const response = await fetch(`${VITE_API_URL}/response/serveyId/${surveyId}`, {
           method: "GET",
           credentials: "include",
           headers: { "Content-Type": "application/json" },

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { MdTitle, MdDescription, MdDateRange, MdCheck } from "react-icons/md";
 import { motion } from "framer-motion";
 import { toast,ToastContainer } from "react-toastify";
+import { VITE_API_URL } from "../config";
 
 function Create() {
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm();
@@ -12,7 +13,7 @@ function Create() {
     try {
       const { title, startDate, endDate, description } = data;
       
-      const response = await fetch("http://localhost:8080/api/v1/Serveys/profile/create-servey", {
+      const response = await fetch(`${VITE_API_URL}/Serveys/profile/create-servey`, {
         method: "POST",
         credentials: "include",
         headers: {

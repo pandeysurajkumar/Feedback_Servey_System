@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
+import { VITE_API_URL } from "../config";
 
 function Login() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -13,7 +14,7 @@ function Login() {
   const onSubmit = async (data) => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8080/api/v1/auth/login", {
+      const response = await fetch(`${VITE_API_URL}/auth/login`, {
         method: "POST",
         credentials: "include",
         headers: {

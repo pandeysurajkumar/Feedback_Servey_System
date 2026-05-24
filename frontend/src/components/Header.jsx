@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { IoMenu } from "react-icons/io5";
 import { FaTimes } from "react-icons/fa";
 import { useRef, useState } from "react";
-import iage from "../assets/userpng.png";
+import iage from "../assets/user.svg";
 import { Link, NavLink } from "react-router-dom";
 import { handleLogout } from "../constants/handlelogout";
+import { VITE_API_URL } from "../config";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +42,7 @@ function Header() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:8080/api/v1/auth/auth-check", {
+        const response = await fetch(`${VITE_API_URL}/auth/auth-check`, {
           method: "GET",
           credentials: "include",
           headers: {
@@ -61,7 +62,7 @@ function Header() {
 
   const handleLogoutClick = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/v1/auth/logout", {
+      const response = await fetch(`${VITE_API_URL}/auth/logout`, {
         method: "GET",
         credentials: "include",
         headers: {

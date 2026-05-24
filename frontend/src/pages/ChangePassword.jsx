@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { VITE_API_URL } from "../config";
 
 function ChangePassword() {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ function ChangePassword() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:8080/api/v1/auth/change-password",
+        `${VITE_API_URL}/auth/change-password`,
         {
           method: "POST",
           credentials: "include",

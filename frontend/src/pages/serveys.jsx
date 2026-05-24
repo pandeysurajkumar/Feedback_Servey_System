@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import {VITE_API_URL} from "../config";
 function Serveys() {
   const [upcomingSurveys, setUpcomingSurveys] = useState([]);
   const [closedSurveys, setClosedSurveys] = useState([]);
@@ -11,7 +11,7 @@ function Serveys() {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const response = await fetch("http://localhost:8080/api/v1/Serveys/");
+        const response = await fetch(`${VITE_API_URL}/Serveys/`);
         const data = await response.json();
 
         const currentDateTime = new Date();

@@ -6,7 +6,8 @@ import { Question } from "../models/questions.models.js";
 
 const addResponse = asynchandler(async (req, res, next) => {
   try {
-    const { serveyid, answer } = req.body;
+    const serveyid = req.body.serveyid || req.body.surveyid || req.params.serveyId;
+    const { answer } = req.body;
     const userid = req.user.id;
     console.log(serveyid, answer, userid);
     const formattedAnswers = Object.entries(answer).map(

@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaStar, FaTimes, FaExclamationTriangle } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
+import { VITE_API_URL } from '../config';
 
 function SurveyResponse() {
   const { surveyId } = useParams();
@@ -28,7 +29,7 @@ function SurveyResponse() {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(`http://localhost:8080/api/v1/response/${surveyId}`, {
+        const response = await fetch(`${VITE_API_URL}/response/${surveyId}`, {
           method: "GET",
           credentials: "include",
           headers: {
@@ -76,14 +77,14 @@ function SurveyResponse() {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch(`http://localhost:8080/api/v1/response/serveyId`, {
+      const response = await fetch(`${VITE_API_URL}/response/${surveyId}`, {
         method: 'POST',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          serveyid: surveyId,
+          surveyid: surveyId,
           answer: data
         })
       });

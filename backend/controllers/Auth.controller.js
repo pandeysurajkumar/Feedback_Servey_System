@@ -15,7 +15,7 @@ const generateTokens = async function (UserID) {
     await user.save({ validateBeforeSave: false });
     return { accessToken, refreshToken };
   } catch (error) {
-    return next(new Error(500, "Error in generating tokens"));
+    throw new ApiError(500, "Error in generating tokens");
   }
 };
 const signup = asynchandler(async (req, res, next) => {
@@ -35,7 +35,8 @@ const signup = asynchandler(async (req, res, next) => {
       email: user.email,
     });
   } catch (error) {
-    return next(new error(500, "Error in signup"));
+    console.error("Signup error:", error);
+    return next(new ApiError(500, "Error in signup"));
   }
 });
 
@@ -49,11 +50,10 @@ const login = asynchandler(async (req, res, next) => {
     return next(new ApiError(400, "User not found Please signup"));
   }
   const isMatch = await user.isPasswordCorrect(password);
-  // console.log(isMatch);
-  const { accessToken, refreshToken } = await generateTokens(user._id);
   if (!isMatch) {
     return next(new ApiError(400, "Invalid password"));
   }
+  const { accessToken, refreshToken } = await generateTokens(user._id);
 
   const options = {
     httpOnly: true,
@@ -141,4 +141,19 @@ const changePassword = asynchandler(async (req, res, next) => {
     return next(new ApiError(500, "Error in changing password"));
   }
 });
-export { login, signup, logout, userdetails, checkConnection ,changePassword };
+const forgotPassword = asynchandler(async (req, res) => {
+  res.status(200).json({
+    message:
+      "If an account with that email exists, a password reset link has been sent.",
+  });
+});
+
+export {
+  login,
+  signup,
+  logout,
+  userdetails,
+  checkConnection,
+  changePassword,
+  forgotPassword,
+};

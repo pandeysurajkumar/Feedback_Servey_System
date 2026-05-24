@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { toast,ToastContainer } from "react-toastify";
 import { MdAdd, MdDelete, MdQuestionAnswer, MdList, MdCheckBox, MdStarRate, MdTextFields } from "react-icons/md";
+import { VITE_API_URL } from "../config";
 
 function Add_Del() {
   const {
@@ -21,7 +22,7 @@ function Add_Del() {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:8080/api/v1/questions/profile/questions/${selectedSurveyId}`,
+        `${VITE_API_URL}/questions/profile/questions/${selectedSurveyId}`,
         {
           method: "GET",
           credentials: "include",
@@ -47,7 +48,7 @@ function Add_Del() {
       try {
         setLoading(true);
         const response = await fetch(
-          "http://localhost:8080/api/v1/serveys/:serveyId",
+          `${VITE_API_URL}/Serveys/my-surveys`,
           {
             method: "GET",
             credentials: "include",
@@ -81,7 +82,7 @@ function Add_Del() {
       };
 
       const response = await fetch(
-        `http://localhost:8080/api/v1/Serveys/profile/add-question/${selectedSurveyId}`,
+        `${VITE_API_URL}/Serveys/profile/add-question/${selectedSurveyId}`,
         {
           method: "POST",
           credentials: "include",
@@ -108,7 +109,7 @@ function Add_Del() {
   const handleDeleteQuestion = async (questionId) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/v1/questions//profile/delete-questions/${questionId}`,
+        `${VITE_API_URL}/questions/profile/delete-questions/${questionId}`,
         {
           method: "DELETE",
           credentials: "include",

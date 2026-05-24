@@ -5,7 +5,6 @@ import { addResponse, showResponse } from "../controllers/response.controller.js
 
 const router = Router();
 
-router.route("/:serveyId").get(verifyJwt,surveydatabyId);
-router.route('/serveyId').post(verifyJwt,addResponse);
-router.route('/serveyId/:surveyId').get(verifyJwt,showResponse);
+router.route("/:serveyId").get(verifyJwt, surveydatabyId).post(verifyJwt, addResponse);
+router.route("/serveyId/:surveyId").get(verifyJwt, showResponse);
 export {router as Response_routes};

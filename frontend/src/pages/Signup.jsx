@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
+import { VITE_API_URL } from "../config";
 
 function Signup() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Signup() {
   const onSubmit = async (data) => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8080/api/v1/auth/signup", {
+      const response = await fetch(`${VITE_API_URL}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

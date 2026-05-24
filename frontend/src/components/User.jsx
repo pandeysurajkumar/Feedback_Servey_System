@@ -3,6 +3,7 @@ import useri from "../assets/user.svg";
 import { MdEdit, MdLock, MdEmail, MdPerson } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { LiaLinkedinIn } from "react-icons/lia";
+import { VITE_API_URL } from "../config";
 
 function User() {
   const [user, setUser] = useState("");
@@ -15,7 +16,7 @@ function User() {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch("http://localhost:8080/api/v1/profile/dashboard", {
+        const response = await fetch(`${VITE_API_URL}/profile/dashboard`, {
           method: "GET",
           credentials: "include",
           headers: {

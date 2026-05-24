@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
+import { VITE_API_URL } from "../config"; 
+
 
 function ForgotPassword() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -11,7 +13,7 @@ function ForgotPassword() {
   const onSubmit = async (data) => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8080/api/v1/auth/forgot-password", {
+      const response = await fetch(`${VITE_API_URL}/auth/forgot-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

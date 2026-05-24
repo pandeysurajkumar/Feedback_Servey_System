@@ -1,6 +1,8 @@
+import { VITE_API_URL } from "../config";
+
 export async function handleLogout() {
     try {
-        const response = await fetch("http://localhost:8080/api/v1/auth/logout", {
+        const response = await fetch(`${VITE_API_URL}/auth/logout`, {
         method: "GET",
         credentials: "include",
         headers: {

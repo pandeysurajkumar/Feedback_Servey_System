@@ -8,6 +8,8 @@ services:
       - feedback-network
 
   backend:
+    build:
+      context: ./backend
     image: feedback-backend
     container_name: backend
     restart: unless-stopped
@@ -21,6 +23,8 @@ services:
       - feedback-network
 
   frontend:
+    build:
+      context: ./frontend
     image: feedback-frontend
     container_name: frontend
     restart: unless-stopped

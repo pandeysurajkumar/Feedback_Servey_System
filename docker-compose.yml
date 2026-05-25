@@ -1,0 +1,36 @@
+services:
+
+  mongodb:
+    image: mongo:7
+    container_name: mongodb
+    restart: unless-stopped
+    networks:
+      - feedback-network
+
+  backend:
+    image: feedback-backend
+    container_name: backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - mongodb
+    networks:
+      - feedback-network
+
+  frontend:
+    image: feedback-frontend
+    container_name: frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - feedback-network
+
+networks:
+  feedback-network:
+    driver: bridge
